@@ -14,13 +14,13 @@ public class ControllerAdvice {
 
 	@ExceptionHandler(value=RequestException.class)
 	public ResponseEntity<ErrorDto> RequestExceptionHandler(RequestException ex){
-		ErrorDto error = ErrorDto.builder().code("E-600").message(ex.getMessage()).build();		
+		ErrorDto error = ErrorDto.builder().code(ex.getCode()).message(ex.getMessage()).build();		
 		return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);		
 	}
 	
 	@ExceptionHandler(value=BusinessException.class)
 	public ResponseEntity<ErrorDto> BusinessExceptionHandler(BusinessException ex){
-		ErrorDto error = ErrorDto.builder().code("E-300").message(ex.getMessage()).build();		
+		ErrorDto error = ErrorDto.builder().code(ex.getCode()).message(ex.getMessage()).build();		
 		return new ResponseEntity<>(error,ex.getStatus());		
 	}
 	

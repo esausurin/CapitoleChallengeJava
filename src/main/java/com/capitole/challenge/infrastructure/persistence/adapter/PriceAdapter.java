@@ -24,4 +24,14 @@ public class PriceAdapter implements PricePort {
 	public Price getPriceProductByDateProductBrandNativeQuery(LocalDateTime date, Integer product, Integer brand) {
 		return this.mapper.mapFromPersitence(this.repository.getPriceProductByDateProductBrand(date, product, brand));
 	}
+
+	@Override
+	public boolean existsByProductId(Integer productId) {
+		return repository.existsByProductId(productId);
+	}
+
+	@Override
+	public boolean existsByBrandId(Integer brandId) {
+		return repository.existsByBrandId(brandId);
+	}
 }

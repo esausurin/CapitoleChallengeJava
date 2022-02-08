@@ -22,6 +22,10 @@ public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
 			@Param("date") LocalDateTime date, 
 			@Param("productId") Integer productId, 
 			@Param("brandId") Integer brandId);
+
+	boolean existsByProductId(Integer productId);
+	
+	boolean existsByBrandId(Integer brandId);
 	
 }
 

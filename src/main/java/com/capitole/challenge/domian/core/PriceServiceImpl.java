@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.capitole.challenge.domian.api.entity.Price;
 import com.capitole.challenge.domian.api.exception.BusinessException;
+import com.capitole.challenge.domian.api.exception.RequestException;
 import com.capitole.challenge.domian.api.service.PriceService;
 import com.capitole.challenge.domian.spi.PricePort;
 
@@ -21,6 +22,9 @@ public class PriceServiceImpl implements PriceService {
 	
 	@Override
 	public Price getPriceProductByDateProductBrand(LocalDateTime date, Integer product, Integer brand) {
+		
+		validateParams(brand, product);
+		
 		Price data = this.port.getPriceProductByDateProductBrandNativeQuery(date, product, brand);
 		if(data==null) {
 			throw new BusinessException("E-300","No data found!!!", HttpStatus.NO_CONTENT);
@@ -33,6 +37,18 @@ public class PriceServiceImpl implements PriceService {
 	public Price getPriceProductByDateProductBrandNamedQuery(LocalDateTime date, Integer product, Integer brand) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private void validateParams(Integer brandId, Integer productId) {
+		boolean brandExists = port.existsByBrandId(brandId);
+		if(!brandExists) {
+			throw new RequestException("E-400","The brand was not found!!!");
+		}
+		
+		boolean productExists = port.existsByProductId(productId);		
+		if(!productExists) {
+			throw new RequestException("E-401","The product was not found!!!");
+		}
 	}
 
 }
