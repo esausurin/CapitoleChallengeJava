@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.capitole.challenge.domian.api.entity.Price;
 import com.capitole.challenge.domian.spi.PricePort;
+import com.capitole.challenge.infrastructure.persistence.repository.PriceRepository;
 
 @Component
 public class PriceAdapter implements PricePort {
