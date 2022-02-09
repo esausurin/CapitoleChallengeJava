@@ -27,5 +27,7 @@ public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
 	
 	boolean existsByBrandId(Integer brandId);
 	
+	PriceEntity findDistinctTop1ByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanOrderByPriorityDesc(Integer brandId, Integer productId, LocalDateTime startDate, LocalDateTime endDate);
+	
 }
 

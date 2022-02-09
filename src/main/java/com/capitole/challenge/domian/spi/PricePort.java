@@ -9,4 +9,6 @@ public interface PricePort {
 	public boolean existsByBrandId(Integer brandId);
 
 	public boolean existsByProductId(Integer productId);
+	
+	public Price getPriceProductByDateProductBrandNamedQuery(LocalDateTime date, Integer product, Integer brand);	
 }

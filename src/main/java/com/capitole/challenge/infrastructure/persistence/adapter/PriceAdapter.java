@@ -34,4 +34,10 @@ public class PriceAdapter implements PricePort {
 	public boolean existsByBrandId(Integer brandId) {
 		return repository.existsByBrandId(brandId);
 	}
+
+	@Override
+	public Price getPriceProductByDateProductBrandNamedQuery(LocalDateTime appDate, Integer productId, Integer brandId) {
+		return this.mapper.mapFromPersitence(this.repository
+				.findDistinctTop1ByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanOrderByPriorityDesc(brandId, productId, appDate, appDate));
+	}
 }

@@ -34,7 +34,7 @@ public class PriceResource {
 			@RequestParam(value="product", required = true) Integer product,
 			@RequestParam(value="brand", required = true) Integer brand
 			) {
-		return ResponseEntity.ok(this.mapper.map(this.service.getPriceProductByDateProductBrandNamedQuery(fechaAplicacion, product, brand)));		
+		return ResponseEntity.ok(this.mapper.map(this.service.getPriceProductByDateProductBrand(fechaAplicacion, product, brand)));		
 	}
 }
 

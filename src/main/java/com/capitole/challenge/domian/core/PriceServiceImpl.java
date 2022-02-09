@@ -35,9 +35,17 @@ public class PriceServiceImpl implements PriceService {
 
 	@Override
 	public Price getPriceProductByDateProductBrandNamedQuery(LocalDateTime date, Integer product, Integer brand) {
-		// TODO Auto-generated method stub
-		return null;
+		validateParams(brand, product);		
+
+		Price data = this.port.getPriceProductByDateProductBrandNamedQuery(date, product, brand);
+		if(data==null) {
+			throw new BusinessException("E-300","No data found!!!", HttpStatus.NO_CONTENT);
+		}
+		
+		return data;
 	}
+	
+	
 	
 	private void validateParams(Integer brandId, Integer productId) {
 		boolean brandExists = port.existsByBrandId(brandId);
