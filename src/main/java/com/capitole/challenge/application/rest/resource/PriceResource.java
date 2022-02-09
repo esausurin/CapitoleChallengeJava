@@ -22,19 +22,20 @@ public class PriceResource {
 	/** The service. */
 	private final PriceService service;
 	private final PriceDtoMapper mapper;
+	
 	public PriceResource (PriceService service, PriceDtoMapper mapper) {
 		this.service = service;
 		this.mapper=mapper;
 	}
 	
-	@GetMapping("/consultar-producto-precio/")
+	@GetMapping("/findPrice")
 	@ResponseStatus(code = HttpStatus.OK)
-	public ResponseEntity<PriceDto> findByFechaAplicacionProductBrand(
-			@RequestParam(value="fechaAplicacion", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fechaAplicacion,
+	public ResponseEntity<PriceDto> findByapplicationDateProductBrand(
+			@RequestParam(value="applicationDate", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime applicationDate,
 			@RequestParam(value="product", required = true) Integer product,
 			@RequestParam(value="brand", required = true) Integer brand
 			) {
-		return ResponseEntity.ok(this.mapper.map(this.service.getPriceProductByDateProductBrand(fechaAplicacion, product, brand)));		
+		return ResponseEntity.ok(this.mapper.map(this.service.getPriceProductByDateProductBrand(applicationDate, product, brand)));		
 	}
 }
 

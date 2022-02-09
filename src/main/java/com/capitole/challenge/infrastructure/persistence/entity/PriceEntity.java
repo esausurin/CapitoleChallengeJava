@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@lombok.Getter
-@lombok.Setter
 @lombok.NoArgsConstructor
 @lombok.Data
 
