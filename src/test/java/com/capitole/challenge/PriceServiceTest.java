@@ -25,6 +25,10 @@ import com.capitole.challenge.domian.spi.PricePort;
 @Import(ChallengeApplicationTestsConfig.class)
 public class PriceServiceTest {
 
+	private static final int BRAND_ID = 1;
+
+	private static final int PRODUCT_ID = 35455;
+
 	@Autowired
 	private PriceService service;
 	
@@ -35,7 +39,7 @@ public class PriceServiceTest {
 	private Price expectedPriceFirstRow;
 	
 	@Test
-	void testgetPriceProductByDateProductBrandNativeQuery() {
+	void testGetPriceProductByDateProductBrand() {
 		
 		LocalDateTime fecha = LocalDateTime.of(2020, 06, 14, 10, 00, 00); 
 		
@@ -45,7 +49,25 @@ public class PriceServiceTest {
 		Mockito.when(this.port.existsByBrandId(1)).thenReturn(true);
 		Mockito.when(this.port.existsByProductId(35455)).thenReturn(true);
 		
-		final Price result = this.service.getPriceProductByDateProductBrand(fecha, 35455, 1);
+		final Price result = this.service.getPriceProductByDateProductBrand(fecha, PRODUCT_ID, BRAND_ID);
+		Assertions.assertThat(result).isNotNull();
+		
+		final Price c = result;
+		Assertions.assertThat(c.getId()).isEqualTo(1L);
+	}
+	
+	@Test
+	void testGetPriceProductByDateProductBrandNamedQuery() {
+		
+		LocalDateTime fecha = LocalDateTime.of(2020, 06, 14, 10, 00, 00); 
+		
+		Mockito.when(this.port.getPriceProductByDateProductBrandNamedQuery(ArgumentMatchers.any(), 
+				ArgumentMatchers.anyInt(),ArgumentMatchers.anyInt())).thenReturn(expectedPriceFirstRow);
+		
+		Mockito.when(this.port.existsByBrandId(1)).thenReturn(true);
+		Mockito.when(this.port.existsByProductId(35455)).thenReturn(true);
+		
+		final Price result = this.service.getPriceProductByDateProductBrandNamedQuery(fecha, PRODUCT_ID, BRAND_ID);
 		Assertions.assertThat(result).isNotNull();
 		
 		final Price c = result;
