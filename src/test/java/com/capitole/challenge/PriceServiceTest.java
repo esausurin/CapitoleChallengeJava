@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -25,10 +26,6 @@ import com.capitole.challenge.domian.spi.PricePort;
 @Import(ChallengeApplicationTestsConfig.class)
 public class PriceServiceTest {
 
-	private static final int BRAND_ID = 1;
-
-	private static final int PRODUCT_ID = 35455;
-
 	@Autowired
 	private PriceService service;
 	
@@ -38,10 +35,12 @@ public class PriceServiceTest {
 	@Autowired
 	private Price expectedPriceFirstRow;
 	
+	@Autowired
+	@Qualifier("expectedfecha")
+	private LocalDateTime expectedfecha;
+	
 	@Test
 	void testGetPriceProductByDateProductBrand() {
-		
-		LocalDateTime fecha = LocalDateTime.of(2020, 06, 14, 10, 00, 00); 
 		
 		Mockito.when(this.port.getPriceProductByDateProductBrandNativeQuery(ArgumentMatchers.any(), 
 				ArgumentMatchers.anyInt(),ArgumentMatchers.anyInt())).thenReturn(expectedPriceFirstRow);
@@ -49,7 +48,8 @@ public class PriceServiceTest {
 		Mockito.when(this.port.existsByBrandId(1)).thenReturn(true);
 		Mockito.when(this.port.existsByProductId(35455)).thenReturn(true);
 		
-		final Price result = this.service.getPriceProductByDateProductBrand(fecha, PRODUCT_ID, BRAND_ID);
+		final Price result = this.service.getPriceProductByDateProductBrand(expectedfecha, 
+				ChallengeApplicationTestsConfig.PRODUCT_ID, ChallengeApplicationTestsConfig.BRAND_ID);
 		Assertions.assertThat(result).isNotNull();
 		
 		final Price c = result;
@@ -59,15 +59,14 @@ public class PriceServiceTest {
 	@Test
 	void testGetPriceProductByDateProductBrandNamedQuery() {
 		
-		LocalDateTime fecha = LocalDateTime.of(2020, 06, 14, 10, 00, 00); 
-		
 		Mockito.when(this.port.getPriceProductByDateProductBrandNamedQuery(ArgumentMatchers.any(), 
 				ArgumentMatchers.anyInt(),ArgumentMatchers.anyInt())).thenReturn(expectedPriceFirstRow);
 		
 		Mockito.when(this.port.existsByBrandId(1)).thenReturn(true);
 		Mockito.when(this.port.existsByProductId(35455)).thenReturn(true);
 		
-		final Price result = this.service.getPriceProductByDateProductBrandNamedQuery(fecha, PRODUCT_ID, BRAND_ID);
+		final Price result = this.service.getPriceProductByDateProductBrandNamedQuery(expectedfecha, 
+				ChallengeApplicationTestsConfig.PRODUCT_ID, ChallengeApplicationTestsConfig.BRAND_ID);
 		Assertions.assertThat(result).isNotNull();
 		
 		final Price c = result;
