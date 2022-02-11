@@ -7,6 +7,6 @@ import com.capitole.challenge.infrastructure.persistence.entity.PriceEntity;
 
 @Mapper(componentModel = "spring")
 public abstract class PriceMapper {
-	public abstract Price mapFromPersitence (PriceEntity entity);
-	public abstract PriceEntity mapToPersitence (Price bo);
+	public abstract Price mapFromPersistence (PriceEntity entity);
+	public abstract PriceEntity mapToPersistence (Price bo);
 }

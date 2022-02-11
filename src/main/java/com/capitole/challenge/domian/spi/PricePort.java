@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 
 import com.capitole.challenge.domian.api.entity.Price;
 public interface PricePort {
-	public Price getPriceProductByDateProductBrandNativeQuery(LocalDateTime date, Integer product, Integer brand);
+	Price getPriceProductByDateProductBrandNativeQuery(LocalDateTime date, Integer product, Integer brand);
 
-	public boolean existsByBrandId(Integer brandId);
+	boolean existsByBrandId(Integer brandId);
 
-	public boolean existsByProductId(Integer productId);
+	boolean existsByProductId(Integer productId);
 	
-	public Price getPriceProductByDateProductBrandNamedQuery(LocalDateTime date, Integer product, Integer brand);	
+	Price getPriceProductByDateProductBrandNamedQuery(LocalDateTime date, Integer product, Integer brand);	
 }

@@ -11,7 +11,6 @@ import com.capitole.challenge.domian.api.entity.Price;
 import com.capitole.challenge.infrastructure.persistence.entity.PriceEntity;
 
 @TestConfiguration
-//@Import({ ChallengeApplicationTests.class, PriceServiceTest.class})
 public class ChallengeApplicationTestsConfig {
 
 	public static final int BRAND_ID = 1;
@@ -19,9 +18,9 @@ public class ChallengeApplicationTestsConfig {
 	public static final int PRODUCT_ID = 35455;	
 	
 	@Bean
-	public LocalDateTime expectedfecha() {
-		LocalDateTime fecha = LocalDateTime.of(2020, 06, 14, 10, 00, 00);
-		return fecha;
+	public LocalDateTime expectedApplicationDate() {
+		LocalDateTime applicationDate = LocalDateTime.of(2020, 06, 14, 10, 00, 00);
+		return applicationDate;
 	};
 	
 	@Bean

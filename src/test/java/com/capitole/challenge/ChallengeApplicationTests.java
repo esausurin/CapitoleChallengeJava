@@ -63,35 +63,35 @@ class ChallengeApplicationTests {
 	}
 	
 	@Test
-	public void testCaseOne() throws Exception {
+	void testCaseOne() throws Exception {
 		this.mockMvc.perform(get("/api/findPrice?applicationDate=2020-06-14T10:00:00&product=35455&brand=1"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.price").value(35.5));
 	}
 
 	@Test
-	public void testCaseTwo() throws Exception {
+	void testCaseTwo() throws Exception {
 		this.mockMvc.perform(get("/api/findPrice?applicationDate=2020-06-14T16:00:00&product=35455&brand=1"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.price").value(25.45));
 	}
 	
 	@Test
-	public void useCaseThreeTest() throws Exception {
+	void useCaseThreeTest() throws Exception {
 		this.mockMvc.perform(get("/api/findPrice?applicationDate=2020-06-14T21:00:00&product=35455&brand=1"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.price").value(35.5));
 	}
 	
 	@Test
-	public void testCaseFour() throws Exception {
+	void testCaseFour() throws Exception {
 		this.mockMvc.perform(get("/api/findPrice?applicationDate=2020-06-15T10:00:00&product=35455&brand=1"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.price").value(30.5));
 	}
 	
 	@Test
-	public void testCaseFive() throws Exception {
+	void testCaseFive() throws Exception {
 		this.mockMvc.perform(get("/api/findPrice?applicationDate=2020-06-16T21:00:00&product=35455&brand=1"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.price").value(38.95));

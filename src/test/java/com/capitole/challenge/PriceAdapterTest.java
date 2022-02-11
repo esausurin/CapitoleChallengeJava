@@ -37,8 +37,8 @@ public class PriceAdapterTest {
 	public PriceEntity expectedPriceEntityFirstRow;
 	
 	@Autowired
-	@Qualifier("expectedfecha")
-	private LocalDateTime expectedfecha;
+	@Qualifier("expectedApplicationDate")
+	private LocalDateTime expectedApplicationDate;
 	
 	@Test
 	void testGetPriceProductByDateProductBrandNativeQuery() {
@@ -46,11 +46,11 @@ public class PriceAdapterTest {
 				ArgumentMatchers.anyInt(),ArgumentMatchers.anyInt()))
 		.thenReturn(expectedPriceEntityFirstRow);
 		
-		Price result = this.adapter.getPriceProductByDateProductBrandNativeQuery(expectedfecha, 
+		Price result = this.adapter.getPriceProductByDateProductBrandNativeQuery(expectedApplicationDate, 
 				ChallengeApplicationTestsConfig.PRODUCT_ID, ChallengeApplicationTestsConfig.BRAND_ID);
 		
 		Assertions.assertThat(result).isNotNull();
-		Mockito.verify(this.repository,Mockito.times(1)).getPriceProductByDateProductBrand(expectedfecha, 
+		Mockito.verify(this.repository,Mockito.times(1)).getPriceProductByDateProductBrand(expectedApplicationDate, 
 				ChallengeApplicationTestsConfig.PRODUCT_ID, ChallengeApplicationTestsConfig.BRAND_ID);
 		
 	}

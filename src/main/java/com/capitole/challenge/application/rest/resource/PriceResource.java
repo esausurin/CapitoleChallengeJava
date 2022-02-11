@@ -30,7 +30,7 @@ public class PriceResource {
 	
 	@GetMapping("/findPrice")
 	@ResponseStatus(code = HttpStatus.OK)
-	public ResponseEntity<PriceDto> findByapplicationDateProductBrand(
+	public ResponseEntity<PriceDto> findByApplicationDateProductBrand(
 			@RequestParam(value="applicationDate", required = true) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime applicationDate,
 			@RequestParam(value="product", required = true) Integer product,
 			@RequestParam(value="brand", required = true) Integer brand

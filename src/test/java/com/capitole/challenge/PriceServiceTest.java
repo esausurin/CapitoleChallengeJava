@@ -36,8 +36,8 @@ public class PriceServiceTest {
 	private Price expectedPriceFirstRow;
 	
 	@Autowired
-	@Qualifier("expectedfecha")
-	private LocalDateTime expectedfecha;
+	@Qualifier("expectedApplicationDate")
+	private LocalDateTime expectedApplicationDate;
 	
 	@Test
 	void testGetPriceProductByDateProductBrand() {
@@ -45,15 +45,14 @@ public class PriceServiceTest {
 		Mockito.when(this.port.getPriceProductByDateProductBrandNativeQuery(ArgumentMatchers.any(), 
 				ArgumentMatchers.anyInt(),ArgumentMatchers.anyInt())).thenReturn(expectedPriceFirstRow);
 		
-		Mockito.when(this.port.existsByBrandId(1)).thenReturn(true);
-		Mockito.when(this.port.existsByProductId(35455)).thenReturn(true);
+		Mockito.when(this.port.existsByBrandId(ChallengeApplicationTestsConfig.BRAND_ID)).thenReturn(true);
+		Mockito.when(this.port.existsByProductId(ChallengeApplicationTestsConfig.PRODUCT_ID)).thenReturn(true);
 		
-		final Price result = this.service.getPriceProductByDateProductBrand(expectedfecha, 
+		final Price result = this.service.getPriceProductByDateProductBrand(expectedApplicationDate, 
 				ChallengeApplicationTestsConfig.PRODUCT_ID, ChallengeApplicationTestsConfig.BRAND_ID);
 		Assertions.assertThat(result).isNotNull();
 		
-		final Price c = result;
-		Assertions.assertThat(c.getId()).isEqualTo(1L);
+		Assertions.assertThat(result.getId()).isEqualTo(1L);
 	}
 	
 	@Test
@@ -62,15 +61,14 @@ public class PriceServiceTest {
 		Mockito.when(this.port.getPriceProductByDateProductBrandNamedQuery(ArgumentMatchers.any(), 
 				ArgumentMatchers.anyInt(),ArgumentMatchers.anyInt())).thenReturn(expectedPriceFirstRow);
 		
-		Mockito.when(this.port.existsByBrandId(1)).thenReturn(true);
-		Mockito.when(this.port.existsByProductId(35455)).thenReturn(true);
+		Mockito.when(this.port.existsByBrandId(ChallengeApplicationTestsConfig.BRAND_ID)).thenReturn(true);
+		Mockito.when(this.port.existsByProductId(ChallengeApplicationTestsConfig.PRODUCT_ID)).thenReturn(true);
 		
-		final Price result = this.service.getPriceProductByDateProductBrandNamedQuery(expectedfecha, 
+		final Price result = this.service.getPriceProductByDateProductBrandNamedQuery(expectedApplicationDate, 
 				ChallengeApplicationTestsConfig.PRODUCT_ID, ChallengeApplicationTestsConfig.BRAND_ID);
 		Assertions.assertThat(result).isNotNull();
 		
-		final Price c = result;
-		Assertions.assertThat(c.getId()).isEqualTo(1L);
+		Assertions.assertThat(result.getId()).isEqualTo(1L);
 	}
 
 }

@@ -22,7 +22,7 @@ public class PriceAdapter implements PricePort {
 	
 	@Override
 	public Price getPriceProductByDateProductBrandNativeQuery(LocalDateTime date, Integer product, Integer brand) {
-		return this.mapper.mapFromPersitence(this.repository.getPriceProductByDateProductBrand(date, product, brand));
+		return this.mapper.mapFromPersistence(this.repository.getPriceProductByDateProductBrand(date, product, brand));
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class PriceAdapter implements PricePort {
 
 	@Override
 	public Price getPriceProductByDateProductBrandNamedQuery(LocalDateTime appDate, Integer productId, Integer brandId) {
-		return this.mapper.mapFromPersitence(this.repository
+		return this.mapper.mapFromPersistence(this.repository
 				.findDistinctTop1ByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanOrderByPriorityDesc(brandId, productId, appDate, appDate));
 	}
 }
